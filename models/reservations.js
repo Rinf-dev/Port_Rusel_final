@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 
 const reservationsSchema = new Schema({
+//        _id: { type: String }, // L'ID sera une chaîne
         catwayNumber: {
         type: String
         

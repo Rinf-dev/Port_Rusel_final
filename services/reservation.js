@@ -2,6 +2,7 @@
 // on verra un addHour sur la validation des dates "2"correspondent à mon fuseau horaire
 const {addHours} = require ('date-fns');
 const Reservation = require('../models/reservations');
+const mongoose = require('mongoose');
 
 function parseDate(date) {
     const parsed = new Date(date);
@@ -65,8 +66,10 @@ exports.update = async (req, res, next) => {
     }
 }
 
+
+
 exports.delete = async (req, res, next) => {
-    const id = req.params.id;
+    const id = req.body.id;
 
     try {
         await Reservation.deleteOne({_id: id});
@@ -74,5 +77,26 @@ exports.delete = async (req, res, next) => {
         return res.status(204).json('suppression_ok');
     } catch (error) {
         return res.status(501).json(error);
+    }
+}
+ 
+
+exports.delete2 = async (req, res, next) => {
+    const id = req.body.id;
+    console.log("id", id);
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ error: "Invalid or missing reservation ID" });
+    }
+
+    try {
+        const result = await Reservation.deleteOne({ _id: id });
+
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ error: "Reservation not found" });
+        }
+
+        return res.status(204).json('suppression_ok');
+   } catch (error) {
+        return res.status(500).json({ error: error.message });
     }
 }

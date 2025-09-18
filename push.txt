@@ -1,3 +1,3 @@
-git remote add origin https://github.com/Rinf-dev/RUSEL-API.git
+git remote add origin https://github.com/Rinf-dev/Port_Rusel_final.git
 git branch -M main
 git push -u origin main
