@@ -1,0 +1,96 @@
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+<nav style="
+background-color: #5c9ead; 
+display: flex; 
+justify-content: space-between; 
+align-items: center; 
+padding: 15px 30px; 
+font-family: Arial, sans-serif;
+">
+<a href="/" style="
+    color: white; 
+    font-size: 1.5em; 
+    font-weight: bold; 
+    text-decoration: none;
+">Inscription</a>
+
+<div style="
+    display: flex; 
+    gap: 20px;
+">
+    <a href="./" style="
+        color: white; 
+        text-decoration: none; 
+        padding: 8px 12px;
+    ">Acceuil</a>
+    <a href="/about"  style="
+             color: white; 
+             text-decoration: none; 
+             padding: 8px 12px;"> A propos</a>
+             <a href="/login" style="
+             color: white; 
+             text-decoration: none; 
+             padding: 8px 12px;
+         ">Connexion</a>
+</div>
+</nav>
+
+<div style="display: flex; justify-content: center; margin-top: 200px;">
+    
+    <form id="registrationForm" method="post" action="localhost:3000/users/add">
+        
+        <fieldset style="width: 280px; height: 360px; text-align: center; background-color: grey; font-size: 20px; font-family: Poppins; border-radius: 20px;">
+            <div>
+            <legend>Veuillez Donner vos informations</legend>
+            <label for="name" value="name">Nom</label> <br>
+            <input type="text" id="name" name="name" required placeholder="Dupont"> <br> <br>
+            <label for="firstname" value="firstname">Prénom</label> <br>
+            <input type="text" id="firstname" name="firstname" required placeholder="Jean"> <br> <br>
+            <input type="email" id="email" name="email" required placeholder="email@gmail.com"> <br> <br>
+            <label for="password" value="password">Mot de passe</label> <br>
+            <input type="password" id="password" name="password" required placeholder="motdepasse"> <br> <br>
+
+
+            </div>
+            <input type="submit" value="S'inscrire"  style="color: white; background-color: black; width: 100px; height: 30px; border-radius: 20px; font-size: 15px; font-family: Poppins;">
+            <br> <a href="./">Retour à l'acceuil</a>
+        </fieldset>
+    </form>
+        
+    </div>
+</head>
+
+
+
+    <script nonce="votre-nonce-unique">
+        document.getElementById('registrationForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const name = document.getElementById('name').value;
+        
+            try {
+                const response = await fetch('http://localhost:3000/users/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password, name })
+                });
+        
+                const data = await response.json();
+                
+                if (response.ok) {
+                    alert('Inscription réussie !');
+                    window.location.href = '/login'; // Redirection vers la page de connexion
+                } else {
+                    alert('Erreur : ' + data.message);
+                }
+            } catch (error) {
+                console.error('Erreur :', error);
+                alert('Erreur de connexion au serveur');
+            }
+        });
+        </script>

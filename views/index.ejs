@@ -1,0 +1,297 @@
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Port Russel</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: bisque;
+        line-height: 1.6;
+      }
+      h1,
+      h2 {
+        color: #333;
+        border-bottom: 2px solid #5c9ead;
+        padding-bottom: 10px;
+      }
+      form {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin: 10px 0 5px;
+        color: #555;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      button {
+        background-color: #5c9ead;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #4a7e8c;
+      }
+      a {
+        display: inline-block;
+        background-color: #5c9ead;
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        margin: 10px 0;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+      a:hover {
+        background-color: #4a7e8c;
+      }
+    </style>
+  </head>
+  <nav
+    style="
+      background-color: burlywood;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      font-family: Arial, sans-serif;
+    "
+  >
+    <a
+      href="/"
+      style="
+        color: white;
+        font-size: 1.5em;
+        font-weight: bold;
+        text-decoration: none;
+      "
+      >Home</a
+    >
+
+    <div style="display: flex; gap: 20px">
+      <a
+        href="./"
+        style="color: white; text-decoration: none; padding: 8px 12px"
+        >Acceuil</a
+      >
+
+      <a
+        href="/listofcatways"
+        style="color: white; text-decoration: none; padding: 8px 12px"
+        >Catways</a
+      >
+      <a
+        href="/listofreservations"
+        style="color: white; text-decoration: none; padding: 8px 12px"
+        >Réservations</a
+      >
+      <a
+        href="/logout"
+        style="color: white; text-decoration: none; padding: 8px 12px"
+        >Déconnexion</a
+      >
+    </div>
+  </nav>
+  <body>1
+
+    <h1>Utilisateurs</h1>
+    <br />
+<!-- Formulaire de login -->
+<div style="display: flex; justify-content: center; margin-top: 200px;">
+
+
+    <form method="post" action="http://localhost:3000/users/authenticate" >
+        <fieldset style="width: 280px; height: 300px; text-align: center; background-color: grey; font-size: 20px; font-family: Poppins; border-radius: 20px;">
+            <div>
+            <legend>Veuillez vous connecter </legend> 
+            <label for="email">Email</label> 
+            <input type="email" name="email" required>
+            <label for="password">Mot de passe</label> 
+            <input type="password" name="password" required> 
+
+            </div>
+            <input type="submit" value="Connexion" style="color: white; background-color: black; width: 100px; height: 30px; border-radius: 20px; font-size: 15px; font-family: Poppins;">
+            
+        </fieldset>
+    </form>
+        
+    </div>
+
+
+
+
+
+
+    <!-- Formulaire de création d'utilisateur -->
+    <h2>Créer un Utilisateur</h2>
+    <form method="post" action="http://localhost:3000/users/add" >
+      <input type="text"  name="name" id="name" required placeholder="Nom" />
+      <br />
+      <input type="text" id="firstname" name="firstname" required placeholder="Prénom" />
+      <br />
+      <input type="text" id="email" name="email" required placeholder="email" />
+      <br />
+      <input
+        type="text"
+        id="password"
+        name="password"
+        required
+        placeholder="Mot de passe"
+      />
+      <br />
+      <button type="submit">Créer</button>
+    </form>
+
+    <!-- Formulaire de modification d'utilisateur -->
+    <h2>Modifier un Utilisateur</h2>
+    <form action="/users/update" method="post">
+     <input type="text" name="id" placeholder="ID utilisateur" required />
+  <input type="text" name="name" placeholder="Nom" />
+  <input type="text" name="firstname" placeholder="Prénom" />
+  <button type="submit">Modifier</button>
+    </form>
+
+    <!-- Formulaire de suppression d'utilisateur -->
+    <h2>Supprimer un Utilisateur</h2>
+    <form action="/users/delete" method="post">
+      <label for="id">ID de l'utilisateur :</label>
+      <input type="text" id="id" name="id" placeholder="Entrez l'ID" required />
+
+      <button type="submit">Supprimer</button>
+    </form>
+
+    <!-- Formulaire de création de catway -->
+
+    <br />
+    <h1>Catways</h1>
+    <br />
+
+    <h2 id="catways">Créer un Catway</h2>
+    <form method="post" action="/catways/add">
+      <input
+        type="text"
+        id="catwayNumber"
+        name="catwayNumber"
+        required
+        placeholder="Numéro du catway"
+      />
+      <br />
+      <input
+        type="text"
+        id="catwayType"
+        name="catwayType"
+        required
+        placeholder="type (short | long)"
+      />
+      <br />
+      <input
+        type="text"
+        id="catwayState"
+        name="catwayState"
+        required
+        placeholder="État du catway"
+      />
+      <br />
+      <button type="submit">Nouveau Catway</button>
+    </form>
+
+    <!-- Formulaire de modification de description de catway -->
+    <h2>Modifier Description du Catway</h2>
+    <form method="post" action="/catways/update">
+      <input type="text" id="id" name="id" required placeholder="id" /> <br />
+      <input
+        type="text"
+        id="catwayState"
+        name="catwayState"
+        required
+        placeholder="État du catway"
+      />
+      <br />
+      <button type="submit">Modifier</button>
+    </form>
+
+    <!-- Formulaire de détails de catway -->
+    <h2>Détails d'un Catway</h2>
+    <div>
+      <form action="http://localhost:3000/catways/details/" method="post">
+        <input
+          type="text"
+          name="id"
+          placeholder="Entrez l'ID du catway"
+          required
+        />
+        <button type="submit">Voir détails</button>
+      </form>
+    </div>
+    <!-- Formulaire de suppression de catway -->
+    <h2>Supprimer un Catway</h2>
+    <form action="/catways/delete" method="post">
+      <label for="id">ID du catways :</label>
+      <input type="text" id="id" name="id" placeholder="Entrez l'ID" required />
+
+      <button type="submit">Supprimer</button>
+    </form>
+
+    <br />
+    <h1>Réservations</h1>
+    <br />
+
+    <!-- Formulaire d'enregistrement de réservation -->
+
+    <h2 id="savereservation">Enregistrer une Réservation</h2>
+    <form action="/reservations/add" method="post">
+      <label
+        >Numéro Catways : <input type="text" name="catwayNumber" required
+      /></label>
+      <label
+        >Nom Client : <input type="text" name="clientName" required
+      /></label>
+      <label
+        >Nom Bateau : <input type="text" name="boatName" required
+      /></label>
+      <label>Date Début : <input type="date" name="startDate" /></label>
+
+      <label>Date Fin : <input type="date" name="endDate" required /></label>
+      <button type="submit">Enregistrer Réservation</button>
+    </form>
+
+    <!-- Formulaire de suppression de réservation -->
+    <h2 id="deletereservation">Supprimer une Réservation</h2>
+    <form action="/catways/reservations/delete" method="POST">
+      <label for="id">ID de la reservations :</label>
+      <input type="text" id="id" name="id" placeholder="Entrez l'ID" required />
+
+      <button type="submit">Supprimer</button>
+    </form>
+    <!-- Formulaire de détails de réservation -->
+    <h2 id="detailreservation">Détails d'une Réservation</h2>
+    <form action="/reservations/details/" method="GET">
+      <input
+        type="text"
+        name="id"
+        placeholder="Entrez l'ID de la reservations"
+        required
+      />
+      <button type="submit">Voir détails</button>
+    </form>
+  </body>
+</html>
