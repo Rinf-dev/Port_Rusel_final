@@ -80,23 +80,15 @@ exports.delete = async (req, res, next) => {
     }
 }
  
-
-exports.delete2 = async (req, res, next) => {
+exports.details = async (req, res, next) => {
     const id = req.body.id;
-    console.log("id", id);
-    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ error: "Invalid or missing reservation ID" });
-    }
 
     try {
-        const result = await Reservation.deleteOne({ _id: id });
+        await Reservation.findOne({_id: id});
 
-        if (result.deletedCount === 0) {
-            return res.status(404).json({ error: "Reservation not found" });
-        }
-
-        return res.status(204).json('suppression_ok');
-   } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.status(204).json('Display');
+    } catch (error) {
+        return res.status(501).json(error);
     }
 }
+ 

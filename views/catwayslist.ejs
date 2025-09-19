@@ -105,33 +105,12 @@
         font-family: Arial, sans-serif;
       "
     >
-      <a
-        href="/"
-        style="
-          color: white;
-          font-size: 1.5em;
-          font-weight: bold;
-          text-decoration: none;
-        "
-        >Catways</a
-      >
 
       <div style="display: flex; gap: 20px">
         <a
           href="./"
           style="color: white; text-decoration: none; padding: 8px 12px"
           >Acceuil</a
-        >
-
-        <a
-          href="/panel"
-          style="color: white; text-decoration: none; padding: 8px 12px"
-          >Panel Port</a
-        >
-        <a
-          href="/listofreservations"
-          style="color: white; text-decoration: none; padding: 8px 12px"
-          >Réservations</a
         >
         <a
           href="/logout"
@@ -149,7 +128,7 @@
           <th>Nom</th>
           <th>Type</th>
           <th>Etat</th>
-          <th>Actions</th>
+          <th>Effacement</th>
         </tr>
       </thead>
       <tbody>
@@ -158,7 +137,7 @@
           <td><%= catway._id %></td>
           <td><%= catway.catwayNumber %></td>
           <td>
-            <span id="type-<%= catway._id %>"><%= catway.type %></span>
+            <%= catway.catwayType %>
           </td>
           <td><%= catway.catwayState %></td>
           <td class="actions">
@@ -174,45 +153,13 @@
 
               <button type="submit">Supprimer</button>
             </form>
-            <a href="/catways/details/<%= catway._id %>" class="btn btn-details"
-              >Détails</a
-            >
+
           </td>
         </tr>
         <% }); %>
       </tbody>
     </table>
 
-    <div class="navigation">
-      <form method="POST" action="/catways/add">
-        <input
-          type="text"
-          id="catwayNumber"
-          name="catwayNumber"
-          required
-          placeholder="Numéro du catway"
-        />
-        <br />
-        <input
-          type="text"
-          id="type"
-          name="type"
-          required
-          placeholder="type (short | long)"
-        />
-        <br />
-        <input
-          type="text"
-          id="catwayState"
-          name="catwayState"
-          required
-          placeholder="État du catway"
-        />
-        <br />
-        <button type="submit">Nouveau Catway</button>
-      </form>
-      <a href="/">Retour au Menu Principal</a>
-    </div>
 
     <script>
       function editType(id) {

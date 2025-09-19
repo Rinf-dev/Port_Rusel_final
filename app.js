@@ -8,8 +8,47 @@ const usersRouters = require('./routes/users');
 const indexRouter = require('./routes/index');
 const catwaysRouters = require('./routes/catways');
 const reservationsRouters = require('./routes/reservations');
-
 const app = express();
+// ajouter pour le  afficher les catways
+const Catways = require('./models/catway');
+const Reservation = require('./models/reservations'); // importer le modèle
+
+//Afficher la liste des Résa
+app.get('/reservationslist', async (req, res) => {
+  console.log("reservations");
+    try {
+    const reservations = await Reservation.find();
+    res.render('reservationslist', { reservations }); // Chemin correct vers le fichier EJS
+  } catch (error) {
+    res.status(500).send('Erreur serveur');
+  }
+});
+
+//Afficher la liste des catways
+app.get("/catwayslist",  async (req, res) => {
+    console.log("cathwayslist");
+  try {
+    const [catways, users] = await Promise.all([
+      Catways.find({}),
+
+    ]);
+
+    res.locals.catways = catways;
+    res.locals.users = users;
+    res.render("catwayslist");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+
+
+
+
+//module.exports = router;
+
+
+
 
 
 // Connexion à la base de données MongoDB

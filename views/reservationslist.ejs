@@ -1,0 +1,182 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Réservations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #5c9ead;
+            padding-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #5c9ead;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e6f2f5;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #5c9ead;
+            color: white;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #4a7e8c;
+        }
+        .btn-details {
+            background-color: #4a7e8c;
+        }
+        .btn-delete {
+            background-color: #e74c3c;
+        }
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+        .navigation {
+            margin-top: 20px;
+        }
+        .navigation a {
+            display: inline-block;
+            background-color: #5c9ead;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+        .navigation a:hover {
+            background-color: #4a7e8c;
+        }
+    </style>
+</head>
+    <nav
+      style="
+        background-color: #5c9ead;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        font-family: Arial, sans-serif;
+      "
+    >
+      <a
+        href="/"
+        style="
+          color: white;
+          font-size: 1.5em;
+          font-weight: bold;
+          text-decoration: none;
+        "
+        >Réservations</a
+      >
+
+      <div style="display: flex; gap: 20px">
+        <a
+          href="./"
+          style="color: white; text-decoration: none; padding: 8px 12px"
+          >Acceuil</a
+        >
+
+        <a
+          href="/panel"
+          style="color: white; text-decoration: none; padding: 8px 12px"
+          >Panel Port</a
+        >
+        <a
+          href="/listofcatways"
+          style="color: white; text-decoration: none; padding: 8px 12px"
+          >Catways</a
+        >
+        <a
+          href="/logout"
+          style="color: white; text-decoration: none; padding: 8px 12px"
+          >Déconnexion</a
+        >
+      </div>
+    </nav>
+<body>
+    <h1>Liste des Réservations</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID Réservation</th>
+                <th>Utilisateur</th>
+                <th>Bateau</th>
+                <th>Catway</th>
+                <th>Date Début</th>
+                <th>Date Fin</th>
+                <th>Effacer Réservation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% reservations.forEach(reservation => { %>
+                <tr>
+                    <td><%= reservation._id %></td>
+                    <td><%= reservation.clientName %></td>
+                    <td><%= reservation.boatName %></td>
+                    <td><%= reservation.catwayNumber %></td>
+                    <td><%= reservation.startDate %></td>
+                    <td><%= reservation.endDate %></td>
+                    </form>
+                    <td class="actions">
+                        
+    <form action="/reservations/delete" method="POST">
+      <label for="id">ID de la reservations :</label>
+      <input type="text" id="id" name="id" placeholder="Entrez l'ID" required />
+
+      <button type="submit">Supprimer</button>
+    </form>
+                     
+                        </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <div class="navigation">
+        <a href="/reservations/create">Nouvelle Réservation</a>
+        <a href="/">Retour au Menu Principal</a>
+    </div>
+
+    <script>
+        function deleteReservation(id) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer la réservation ' + id + ' ?')) {
+                window.location.href = '/reservations/delete/' + id;
+            }
+        }
+    </script>
+</body>
+</html>

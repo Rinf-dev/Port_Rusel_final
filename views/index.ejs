@@ -76,34 +76,22 @@
       font-family: Arial, sans-serif;
     "
   >
-    <a
-      href="/"
-      style="
-        color: white;
-        font-size: 1.5em;
-        font-weight: bold;
-        text-decoration: none;
-      "
-      >Home</a
-    >
+      <a
+          href="/catwayslist"
+          style="color: white; text-decoration: none; padding: 8px 12px"
+          >Liste des catways</a
+        >
+        <a
+          href="/reservationslist"
+          style="color: white; text-decoration: none; padding: 8px 12px"
+          >Réservations</a
+        >
+        <a
+          href="/listofusers"
+          style="color: white; text-decoration: none; padding: 8px 12px"
+          >Users</a
+        >
 
-    <div style="display: flex; gap: 20px">
-      <a
-        href="./"
-        style="color: white; text-decoration: none; padding: 8px 12px"
-        >Acceuil</a
-      >
-
-      <a
-        href="/listofcatways"
-        style="color: white; text-decoration: none; padding: 8px 12px"
-        >Catways</a
-      >
-      <a
-        href="/listofreservations"
-        style="color: white; text-decoration: none; padding: 8px 12px"
-        >Réservations</a
-      >
       <a
         href="/logout"
         style="color: white; text-decoration: none; padding: 8px 12px"
@@ -111,13 +99,7 @@
       >
     </div>
   </nav>
-  <body>1
-
-    <h1>Utilisateurs</h1>
-    <br />
-<!-- Formulaire de login -->
-<div style="display: flex; justify-content: center; margin-top: 200px;">
-
+  <body>
 
     <form method="post" action="http://localhost:3000/users/authenticate" >
         <fieldset style="width: 280px; height: 300px; text-align: center; background-color: grey; font-size: 20px; font-family: Poppins; border-radius: 20px;">
@@ -290,7 +272,7 @@
 
     <!-- Formulaire de détails de réservation -->
     <h2 id="detailreservation">Détails d'une Réservation</h2>
-    <form action="/reservations/details/" method="GET">
+    <form action="/reservations/details/" method="post">
       <input
         type="text"
         name="id"
