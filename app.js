@@ -12,6 +12,21 @@ const app = express();
 // ajouter pour le  afficher les catways
 const Catways = require('./models/catway');
 const Reservation = require('./models/reservations'); // importer le modèle
+const User = require('./models/user'); // importer le modèle
+
+//Afficher la liste des utilisateurs
+app.get('/userslist', async (req, res) => {
+  console.log("users");
+    try {
+    const users = await User.find();
+    res.render('userslist', { users}); // Chemin  vers le fichier EJS
+  } catch (error) {
+    res.status(500).send('Erreur serveur');
+  }
+});
+
+
+
 
 //Afficher la liste des Résa
 app.get('/reservationslist', async (req, res) => {
